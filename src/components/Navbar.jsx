@@ -40,7 +40,7 @@ function navbar() {
                   </NavLink>
 
                   <NavLink
-                    to={"/jobss"}
+                    to={"/add-job"}
                     className={linkClass}
                   >
                     Add Job
