@@ -1,12 +1,46 @@
-# React + Vite
+# React Job Listing App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **Job Listing Platform** built with **React, Vite, TailwindCSS, and JSON Server**. This application allows users to browse job listings, add new jobs, edit existing ones, and manage job applications. It's designed to showcase **React best practices, state management, authentication, and CRUD operations**—ideal for demonstrating full-stack development skills.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ **Job Listings** – Browse and view job details  
+✅ **Add/Edit/Delete Jobs** – Fully functional CRUD operations  
+✅ **User Authentication** – Secure login/logout flow (local storage-based)  
+✅ **Protected Routes** – Restrict job posting/editing to authenticated users  
+✅ **Optimized UI** – Responsive and modern design using TailwindCSS  
+✅ **Toast Notifications** – Feedback messages for user interactions  
+✅ **JSON Server (Mock API)** – Simulates backend functionality  
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React 19, Vite, React Router, TailwindCSS  
+- **Backend:** JSON Server (Mock API for job data)  
+- **State Management:** React Hooks  
+- **UI Components:** React Icons, React Toastify  
+
+## 📂 Setup & Installation
+
+```sh
+# Clone the repository
+git clone hhttps://github.com/Heshan93/react-job-listing-app.git  
+cd react-job-listing-app  
+
+# Install dependencies
+npm install  
+
+# Start development server  
+npm run dev  
+
+# Start mock backend (JSON Server)  
+npm run server  
+```
+<!-- 
+## 🚀 Live Demo  
+[**Check out the live project here**](#) -->  
+
+## 📧 Contact  
+I'm actively looking for **full-stack development roles**. Feel free to reach out!  
+📩 **Email:** heshanrajitha1@gmail.com
+<!-- 💼 **Portfolio:** [your-portfolio.com](your-portfolio.com)   -->
+🔗 **LinkedIn:** [linkedin.com/in/heshan-rajitha-054a6ab2](www.linkedin.com/in/heshan-rajitha-054a6ab2)  
