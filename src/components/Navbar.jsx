@@ -26,7 +26,7 @@ function Navbar() {
               <NavLink className="flex flex-shrink-0 items-center mr-4" to={"/"}>
                 <img className="h-10 w-auto" src={logo} alt="React Jobs" />
                 <span className="hidden md:block text-white text-2xl font-bold ml-2">
-                  React Jobs
+                  Jobs Market
                 </span>
               </NavLink>
               <div className="md:ml-auto">
@@ -47,7 +47,8 @@ function Navbar() {
 
                   {/* Show "Login" if user is NOT logged in */}
                   {!user && (
-                    <NavLink to={"/login"} className={linkClass}>
+                    <NavLink to={"/login"} 
+                    className="text-white bg-indigo-500 hover:bg-blue-500 rounded-md px-3 py-2">
                       Login
                     </NavLink>
                   )}

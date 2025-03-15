@@ -9,8 +9,8 @@ function HomePage() {
     <>
       
       <Hero
-        title="Become a React Developer"
-        subtitle="Find the React job that fits your skills and needs"
+        title="Become Front-End a Developer"
+        subtitle="Find the Dream job that fits your skills and needs"
       />
       <Homecard />
       <Joblisting isHome={true} />
