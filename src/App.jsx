@@ -13,6 +13,7 @@ import Jobpage, { jobLoader } from "./components/Jobpage";
 import AddJobPage from "./pages/AddJobPage";
 import EditJobPage from "./pages/EditJobPage";
 import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "./ProtectedRoute"
 
 function App() {
 
@@ -90,16 +91,26 @@ function App() {
     return user;
   }
 
+  
+  
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/jobs" element={<JobPage />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/jobs/:id" element={<Jobpage deleteJob={deleteJob} />} loader={jobLoader} />
-        <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob} />} />
-        <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />}  loader={jobLoader} />
         <Route path="/login" element={<LoginPage getAuthUser={authUser} />} />
+        <Route path="/jobs/:id" element={<Jobpage deleteJob={deleteJob} />} loader={jobLoader} />
+
+        <Route element={<ProtectedRoute />}>
+          
+          <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob} />} />
+          <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />} loader={jobLoader} />
+
+          
+        </Route>
+
       </Route>
     )
   );

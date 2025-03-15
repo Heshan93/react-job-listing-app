@@ -1,12 +1,20 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-function navbar() {
+function Navbar() {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user")); 
 
-      const linkClass = ({isActive} )=> isActive?
-      "text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2": 
-      "text-white  hover:bg-gray-900 hover:text-white rounded-md px-3 py-2";
+  const logoutUser = () => {
+    localStorage.removeItem("user"); 
+    navigate("/login"); 
+  };
+
+  const linkClass = ({ isActive }) =>
+    isActive
+      ? "text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+      : "text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2";
 
   return (
     <div>
@@ -15,10 +23,7 @@ function navbar() {
           <div className="flex h-20 items-center justify-between">
             <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
               {/* <!-- Logo --> */}
-              <NavLink
-                className="flex flex-shrink-0 items-center mr-4"
-                to={"/index.html"}
-              >
+              <NavLink className="flex flex-shrink-0 items-center mr-4" to={"/"}>
                 <img className="h-10 w-auto" src={logo} alt="React Jobs" />
                 <span className="hidden md:block text-white text-2xl font-bold ml-2">
                   React Jobs
@@ -26,26 +31,36 @@ function navbar() {
               </NavLink>
               <div className="md:ml-auto">
                 <div className="flex space-x-2">
-                  <NavLink
-                    to={"/"}
-                    className={linkClass}
-                  >
+                  <NavLink to={"/"} className={linkClass}>
                     Home
                   </NavLink>
-                  <NavLink
-                    to={"/jobs"}
-                    className={linkClass}
-                  >
+                  <NavLink to={"/jobs"} className={linkClass}>
                     Jobs
                   </NavLink>
 
-                  <NavLink
-                    to={"/add-job"}
-                    className={linkClass}
-                  >
-                    Add Job
-                  </NavLink>
+                  {/* Show "Add Job" only if user is logged in */}
+                  {user && (
+                    <NavLink to={"/add-job"} className={linkClass}>
+                      Add Job
+                    </NavLink>
+                  )}
 
+                  {/* Show "Login" if user is NOT logged in */}
+                  {!user && (
+                    <NavLink to={"/login"} className={linkClass}>
+                      Login
+                    </NavLink>
+                  )}
+
+                  {/* Show "Logout" if user IS logged in */}
+                  {user && (
+                    <button
+                      onClick={logoutUser}
+                      className="text-white bg-indigo-500 hover:bg-red-700 rounded-md px-3 py-2"
+                    >
+                      Logout
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -56,4 +71,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default Navbar;
