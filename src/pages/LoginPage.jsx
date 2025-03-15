@@ -4,14 +4,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify';
 
-function LoginPage() {
+function LoginPage({getAuthUser}) {
 
   const [email, setEmail] = useState('');
   const [passWord, setPassWord] = useState('');
+  const navigate = useNavigate();
 
 
 
-  const submitForm =(e)=>{
+  const submitForm = async (e)=>{
     e.preventDefault();
 
     const authInfo = {
@@ -19,7 +20,19 @@ function LoginPage() {
       password: passWord,
     }
 
-    console.log(authInfo)
+    
+    
+    const user = await getAuthUser(authInfo)
+
+    if (user) {
+      toast.success("Login successful!");
+      navigate("/"); // Redirect to homepage
+    } else {
+      toast.error("Invalid email or password");
+    }
+
+    
+
   }
 
   return (

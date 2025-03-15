@@ -63,6 +63,33 @@ function App() {
     return res.json();
   };
 
+  const authUser = async (authInfo) =>{
+    
+    const res = await fetch(`/api/users?email=${authInfo.email}`);
+
+    if (!res.ok) {
+      console.error("Failed to fetch user:", res.statusText);
+      return;
+    }
+
+    const users = await res.json();
+
+    if (users.length === 0){
+      console.error("User not found");
+      return null;
+    }
+
+    const user = users[0];
+    if (user.password !== authInfo.password){
+      console.error("Invalid password");
+      return null;
+    }
+
+    localStorage.setItem("user", JSON.stringify(user))
+
+    return user;
+  }
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
@@ -72,7 +99,7 @@ function App() {
         <Route path="/jobs/:id" element={<Jobpage deleteJob={deleteJob} />} loader={jobLoader} />
         <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob} />} />
         <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />}  loader={jobLoader} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage getAuthUser={authUser} />} />
       </Route>
     )
   );
