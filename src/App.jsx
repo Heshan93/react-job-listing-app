@@ -11,6 +11,8 @@ import JobPage from "./pages/JobPage";
 import NotFound from "./pages/NotFound";
 import Jobpage, { jobLoader } from "./components/Jobpage";
 import AddJobPage from "./pages/AddJobPage";
+import EditJobPage from "./pages/EditJobPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
 
@@ -21,6 +23,23 @@ function App() {
         "content-type": "application/json",
       },
       body: JSON.stringify(newJob),
+    });
+  
+    if (!res.ok) {
+      console.error("Failed to add job:", res.statusText);
+      return;
+    }
+  
+    return res.json(); // Return JSON response
+  };
+
+  const updateJob = async (updateJob) => {
+    const res = await fetch(`/api/Jobs/${updateJob.id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateJob),
     });
   
     if (!res.ok) {
@@ -52,6 +71,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/jobs/:id" element={<Jobpage deleteJob={deleteJob} />} loader={jobLoader} />
         <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob} />} />
+        <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />}  loader={jobLoader} />
+        <Route path="/login" element={<LoginPage />} />
       </Route>
     )
   );
